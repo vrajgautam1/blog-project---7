@@ -16,11 +16,11 @@ A multi-user blog website built using **Express.js**, allowing users to **view, 
 - **Multer** – File upload handling
 - **Cookie-Parser** – Authentication via cookies
 
-## 📸 Screenshots
-(Add your screenshots here)
-
 ## 🌍 Live Demo
-[Live Link]() *(Replace with actual live URL)*
+[Live Link](https://blog-project-7-1.onrender.com) *(Replace with actual live URL)*
+
+## 📸 Screenshots
+
 
 ## 📦 Installation
 1. **Clone the repository:**

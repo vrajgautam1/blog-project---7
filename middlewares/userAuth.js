@@ -1,9 +1,9 @@
-const userAuth = (req, res, next)=>{
-    if(res.cookies){
-        next()
+const userAuth = (req, res, next) => {
+    if (req.cookies.userId) {
+        return next(); 
     }
 
-    return res.redirect("/login");
-}
+    return res.redirect("/login"); 
+};
 
-module.exports = userAuth
+module.exports = userAuth;

@@ -23,6 +23,11 @@ A multi-user blog website built using **Express.js**, allowing users to **view, 
 ### Login Page
 ![Login Page Authentication](screenshots/Login-03-11-2025_02_09_AM.png)
 
+### Home Page
+![HomePage](screenshots/My-Blog-03-11-2025_02_15_AM.png)
+
+### Single Blog Page
+![Single Blog Page](screenshots/My-Blog-03-11-2025_02_15_AM%20(1).png)
 
 ## 📦 Installation
 1. **Clone the repository:**

@@ -20,7 +20,9 @@ A multi-user blog website built using **Express.js**, allowing users to **view, 
 [Live Link](https://blog-project-7-1.onrender.com) *(Replace with actual live URL)*
 
 ## 📸 Screenshots
-[login page authentication](screenshots\Login-03-11-2025_02_09_AM.png)
+### Login Page
+![Login Page Authentication](screenshots/Login-03-11-2025_02_09_AM.png)
+
 
 ## 📦 Installation
 1. **Clone the repository:**

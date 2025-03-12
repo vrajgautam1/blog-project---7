@@ -133,24 +133,25 @@ module.exports.openLoginPage = (req, res) => {
 
 
 //login page post method
-module.exports.submitLogin = async(req, res) => {
-    const {email, password} = req.body;
-    try{
-        const user = await User.findOne({email: email});
-        if(!user){
-            return res.redirect("/login");
-        }
+// module.exports.submitLogin = async(req, res) => {
+//     const {email, password, username} = req.body;
+//     try{
+//         const user = await User.findOne({username: username});
+//         if(!user){
+//             return res.redirect("/login");
+//         }
 
-        if(user.password !== password){
-            return res.redirect('/login');
-        }
-        res.cookie("userId", user._id);
-        return res.redirect('/home');
-    }catch(err){
-        console.log(err);
-        res.send("Error in submitting login");
-    }
-}
+//         if(user.password !== password){
+//             return res.redirect('/login');
+//         }
+//         // res.cookie("userId", user._id);
+//         req.session.userId = user._id;
+//         return res.redirect('/home');
+//     }catch(err){
+//         console.log(err);
+//         res.send("Error in submitting login");
+//     }
+// }
 
 //open single blog 
 module.exports.singleBlogPage = async(req, res)=>{
@@ -161,4 +162,12 @@ module.exports.singleBlogPage = async(req, res)=>{
     }catch(err){
         console.log(err);
     }
+}
+
+//logout
+
+module.exports.logout = (req, res)=>{
+    req.session.destroy(()=>{
+        return res.redirect("/login");
+    })
 }

@@ -1,3 +1,4 @@
+//modules
 const express = require('express');
 const app = express();
 const db = require('./configs/dbconnection');
@@ -5,6 +6,22 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const cookieParser = require('cookie-parser');
+const session = require("express-session")
+const passport = require("./middlewares/passportMiddleWare");
+
+//middlewares 
+app.use(session({
+    secret: "vraj",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: false,
+        maxAge: 1000*60*30
+    }
+}))
+app.use(passport.initialize());
+app.use(passport.session()); 
+
 
 app.set('view engine', 'ejs');
 app.set("views", "views");
@@ -13,9 +30,14 @@ app.use(express.static('public'));
 app.use("/uploads", express.static(path.join(__dirname, 'uploads')));
 app.use(cookieParser());
 
+
+
+//mainrouter
 const mainRouter = require('./router/index');
 app.use(mainRouter);
 
+
+//run server
 // Check if running locally
 if (process.env.NODE_ENV !== 'production') {
     const PORT = process.env.PORT || 3000;

@@ -29,7 +29,18 @@
   </header>
 
   <!-- Blog Section -->
-  <div class="container mt-5" id="blogSection">
+  <% 
+  if(success.length){ %>
+    <div class="toast align-items-center w-100" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body text-success bg-body-success">
+          <%= success %>
+        </div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  <% } %>
+
     <div class="row row-cols-1 g-4">
 
       <% blogs.forEach((blog) => { %>
@@ -87,6 +98,15 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var toastEl = document.querySelector(".toast");
+      var toast = new bootstrap.Toast(toastEl);
+      toast.show(); // Show the toast automatically
+    });
+  </script>
+  
 
 </body>
 </html>

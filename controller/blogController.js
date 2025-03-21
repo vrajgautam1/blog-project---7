@@ -1,7 +1,13 @@
 const blog = require('../models/blogModel');
 const User = require('../models/userModel');
+const passport = require("../middlewares/passportMiddleWare")
 const fs = require('fs');
 const path = require('path');
+
+module.exports.loginSuccess = (req, res)=>{
+    req.flash("success", "login Successful");
+    return res.redirect("/home")
+}
 
 module.exports.openHomePage = async(req, res) => {
     try{
@@ -98,9 +104,6 @@ module.exports.submitEdit = async (req, res) => {
     }
 };
 
-
-
-
 //signup and login controller
 
 //open signup page
@@ -128,7 +131,54 @@ module.exports.submitSignup = async(req, res) => {
 
 //open login page
 module.exports.openLoginPage = (req, res) => {
-    res.render('./client/login.ejs', {errorMessage: null});
+    res.render('./client/login.ejs');
+}
+
+//open single blog 
+module.exports.singleBlogPage = async(req, res)=>{
+    const{id} = req.params
+    try{
+        const blogtodisplay = await blog.findById(id);
+        res.render('./client/singleBlogPage.ejs', {blogtodisplay});
+    }catch(err){
+        console.log(err);
+    }
+}
+
+//logout
+// first we used to destroy sessions now we are using inbuilt method in passport js using a method named logOut
+module.exports.logout = (req, res)=>{
+    req.logOut(()=>{
+        return res.redirect("/login");
+    })
+}
+
+module.exports.myProfile = (req, res)=>{
+    return res.render("./client/myProfile.ejs");
+}
+
+module.exports.resetPassword = (req, res)=>{
+    return res.render("./client/reset.ejs");
+}
+
+module.exports.resetPasswordSubmit = async(req, res)=>{
+    const{password, newPassword, confirmPassword} = req.body;
+    const{id} = req.user;
+    try{
+        const user = await User.findById(id);
+        
+        if(user.password !== password){
+            return res.redirect("/resetPassword");
+        }
+
+        if(newPassword !== confirmPassword){
+            return res.redirect("/resetPassword")
+        }
+
+        return res.redirect("/")
+    }catch(err){
+        console.log(err.message)
+    }
 }
 
 
@@ -152,22 +202,3 @@ module.exports.openLoginPage = (req, res) => {
 //         res.send("Error in submitting login");
 //     }
 // }
-
-//open single blog 
-module.exports.singleBlogPage = async(req, res)=>{
-    const{id} = req.params
-    try{
-        const blogtodisplay = await blog.findById(id);
-        res.render('./client/singleBlogPage.ejs', {blogtodisplay});
-    }catch(err){
-        console.log(err);
-    }
-}
-
-//logout
-
-module.exports.logout = (req, res)=>{
-    req.session.destroy(()=>{
-        return res.redirect("/login");
-    })
-}

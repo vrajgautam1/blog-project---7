@@ -10,9 +10,12 @@
       <li>
         <div class="dropdown">
           <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Hello <%= user.username  %>
             <i class="bi bi-person-circle text-secondary fs-5"></i>
           </button>
           <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/myProfile">My Profile</a></li>
+            <li><a class="dropdown-item" href="/resetPassword">Reset Password</a></li>
             <li><a class="dropdown-item" href="/logout">Logout</a></li>
           </ul>
         </div>

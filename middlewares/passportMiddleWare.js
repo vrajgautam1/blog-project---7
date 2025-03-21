@@ -39,4 +39,24 @@ passport.deserializeUser(async(id, done)=>{
     }
 })
 
-module.exports = passport
+passport.userAuth = (req, res, next)=>{
+    if(req.isAuthenticated()){
+        return next()
+    }
+    return res.redirect("/login");
+}
+
+passport.userData = (req, res, next)=>{
+    if(req.isAuthenticated()){
+        res.locals.user = req.user;
+    }
+    return next();
+}
+
+passport.flashMiddleware = (req, res, next) => {
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    return next();
+};
+
+module.exports = passport;

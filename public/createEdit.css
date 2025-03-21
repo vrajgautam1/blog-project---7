@@ -24,3 +24,11 @@
     .btn-primary:hover {
       background-color: #152a45;
     }
+
+    .footer {
+      background: #1e3a5f;
+      color: white;
+      text-align: center;
+      margin-top: 50px;
+      padding: 15px 0;
+    }

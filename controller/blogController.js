@@ -182,6 +182,7 @@ module.exports.resetPasswordSubmit = async(req, res)=>{
 }
 
 
+
 //login page post method
 // module.exports.submitLogin = async(req, res) => {
 //     const {email, password, username} = req.body;

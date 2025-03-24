@@ -10,7 +10,15 @@
     router.post('/signup', blogController.submitSignup);
 
     router.get('/login', blogController.openLoginPage);
-    router.post("/login",passport.authenticate("local", {failureRedirect:"/login", failureFlash:"login Failed"}), blogController.loginSuccess);
+    router.post("/login",
+        passport.authenticate("local", 
+            {
+            failureRedirect:"/login", 
+            failureFlash:"login Failed"
+            }
+        ), 
+            blogController.loginSuccess
+        );
     
     // the passport.authenticate is only for the login route. 
 

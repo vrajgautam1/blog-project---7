@@ -1,17 +1,4 @@
-
-  <!-- <% if(successMsg.length){ %>
-    <div class="toast align-items-center w-100" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="d-flex">
-        <div class="toast-body text-success bg-body-success">
-          <%= successMsg %>
-        </div>
-        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-    </div>
-  <% } %> -->
-
-
-  step - 1 (express-session)
+step - 1 (express-session)
 
   1 - install from npmjs
   2 - const session = require("express-session") 
@@ -123,3 +110,5 @@ module.exports.logout = (req, res)=>{
         return res.redirect("/login");
     }
 
+//
+when using postman to send post reuest do not forget to go to body<<x-www-form-urlencoded 

@@ -50,6 +50,11 @@
             <p class="text-center mt-3">
                 Don't have an account? <a href="/signup">Sign up</a>
             </p>
+
+            <p class="text-center mt-3">
+                forgot Password? <a href="/forgotPassword">Forgot Password?</a>
+            </p>
+
         </div>
     </div>
 
@@ -77,6 +82,15 @@
         });
     </script>
     <% } %>
+
+    <% if(success.length){ %>
+        <script>
+            swal({
+                title: "<%= success %>",
+                icon: "success",
+            });
+        </script>
+        <% } %>
 </body>
 </body>
 

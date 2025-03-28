@@ -8,15 +8,11 @@ passport.use(new LocalStrategy(
             const user = await userModel.findOne({username}); //this will search the username received from the post request in the database inside all objects and will match the username we received with the username key's value one by one
 
             //now if the match is successful good. else handle what to do
-            if(!user){
-                return done(null, false)
+            if(user && user.password === password){
+                return done(null, user)
             }
-
-            if(user.password !== password){
-                return done(null, false)
-            }
-
-            return done(null, user)
+            else{ return done (null,false)}
+          
 
             //here done is a callback function that follows nodejs error first callback pattern. null means no error, false means auth failed, if it returns the user it means auth is successful.
         }catch(err){

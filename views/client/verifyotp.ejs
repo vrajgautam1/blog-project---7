@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Enter OTP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="d-flex justify-content-center align-items-center vh-100 bg-light">
+
+    <div class="card p-4 shadow-sm" style="width: 350px;">
+        <h4 class="text-center mb-3">Enter OTP</h4>
+        <form method="post" action="">
+            <div class="mb-3">
+                <label for="otpInput" class="form-label">OTP Code</label>
+                <input type="number" class="form-control text-center" id="otpInput" placeholder="Enter 6-digit code"
+                    required name="otp">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Verify OTP</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+
+        <%console.log(success)%>
+
+        <% if(success.length) { %>
+            swal({
+                title: "Otp Received",
+                text: "<%= success %>",
+                icon: "success",
+            });
+        <% } %>
+
+        <% if(error.length) { %>
+            swal({
+                title: "Otp Received",
+                text: "<%= error %>",
+                icon: "error",
+            });
+        <% } %>
+
+    </script>
+
+</body>
+
+</html>

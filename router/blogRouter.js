@@ -4,6 +4,7 @@
     const redirectTohomePage = require('../middlewares/redirectTohomePage');
     const upload = require('../middlewares/imageUpload');
     const passport = require("../middlewares/passportMiddleWare");
+    const change_pass = require('../middlewares/changePassMiddleware');
     
     
     router.get('/signup', blogController.openSignupPage);
@@ -13,13 +14,23 @@
     router.post("/login",
         passport.authenticate("local", 
             {
-            failureRedirect:"/login", 
-            failureFlash:"login Failed"
+                failureRedirect:"/login", 
+                failureFlash:"login Failed"
             }
         ), 
             blogController.loginSuccess
         );
     
+    router.get("/forgotPassword", blogController.openForgotPasswordPage)
+    router.post("/forgotPassword", blogController.submitForgotPassword);
+
+    router.get("/verifyOtp",change_pass, blogController.openVerifyOtpPage);
+    router.post("/verifyOtp",change_pass, blogController.verifyOtp);
+
+    router.get("/changePassword", change_pass, blogController.openChangePasswordPage)
+    router.post("/changePassword",change_pass, blogController.changePassword); 
+
+
     // the passport.authenticate is only for the login route. 
 
     router.use(passport.userAuth); // this is for protecting all the routes. 
